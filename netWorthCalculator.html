@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Net Worth Calculator</title>
+    <style>
+        .form-group, .form-group-liabilities, .form-group-sum{
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- asset -->
+    <form>
+        <div class='form-group'>
+            <label for="num1"> num1</label>
+            <input type="number" class="form-control prc">
+        </div>
+        <div class='form-group'>
+            <label for="num1"> num2</label>
+            <input type="number" class="form-control prc">
+        </div>
+        <div class='form-group'>
+            <label for="num1"> num3</label>
+            <input type="number" class="form-control prc">
+        </div>
+        <div class='form-group'>
+            <label for="num1"> num4</label>
+            <input type="number" class="form-control prc">
+        </div>
+
+        <!-- liabilities -->
+        <hr>
+        <div class='form-group-liabilities'>
+            <label for="num1"> num1</label>
+            <input type="number" class="form-control liabilities">
+        </div>
+
+        <div class='form-group-liabilities'>
+            <label for="num1"> num2</label>
+            <input type="number" class="form-control liabilities">
+        </div>
+
+        <div class='form-group-liabilities'>
+            <label for="num1"> num3</label>
+            <input type="number" class="form-control liabilities">
+        </div>
+
+        <div class='form-group-liabilities'>
+            <label for="num1"> num4</label>
+            <input type="number" class="form-control liabilities">
+        </div>
+    </form>
+ 
+    <div class='form-group-sum'>
+        <h4>Assest : <strong id="result">0</strong></h4>
+        <h4>Liabilities : <strong id="result2">0</strong></h4>
+        <h4>Net Worth : <strong id="newvalue">0</strong></h4>
+    </div>
+    <script>
+        $(document).ready(function () {
+            let sumassets = 0;
+            let sumliab = 0;
+            $('.form-group').on('input', '.prc', function () {
+                var totalsum = 0;
+                $('.form-group .prc').each(function () {
+                    var inputVal = $(this).val();
+                    if ($.isNumeric(inputVal)) {
+                        totalsum += parseFloat(inputVal)
+                    }
+                });
+                console.log(totalsum)
+                sumassets = totalsum;
+                $('#result').text(totalsum);
+            })
+
+            $('.form-group-liabilities').on('input', '.liabilities', function () {
+                var totalsuml = 0;
+                $('.form-group-liabilities .liabilities').each(function () {
+                    var inputVal2 = $(this).val();
+                    if ($.isNumeric(inputVal2)) {
+                        totalsuml += parseFloat(inputVal2)
+                    }
+                });
+                sumliab = totalsuml
+                console.log(totalsuml)
+                $('#result2').text(totalsuml);
+
+            });
+            $('form').on('input', function () {
+                // Check input( $( this ).val() ) for validity here
+                console.log('sumassets', sumassets);
+                console.log('sumliab', sumliab);
+                let newvalue = sumassets - sumliab;
+                console.log('newvalue', newvalue);
+                $('#newvalue').text(newvalue);
+
+
+            });
+        })
+
+    </script>
+</body>
+
+</html>
